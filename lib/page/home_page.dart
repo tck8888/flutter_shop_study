@@ -18,29 +18,31 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           title: Text("ceshi "),
         ),
-        body: Container(
-          child: Column(
-            children: <Widget>[
-              TextField(
-                controller: typeController,
-                decoration: InputDecoration(
-                    contentPadding: EdgeInsets.all(10),
-                    labelText: "类型",
-                    helperText: "请输入类型"),
-                autofocus: false,
-              ),
-              RaisedButton(
-                onPressed: () {
-                  _choice();
-                },
-                child: Text("选择"),
-              ),
-              Text(
-                showText,
-                overflow: TextOverflow.ellipsis,
-                maxLines: 1,
-              )
-            ],
+        body: SingleChildScrollView(
+          child: Container(
+            child: Column(
+              children: <Widget>[
+                TextField(
+                  controller: typeController,
+                  decoration: InputDecoration(
+                      contentPadding: EdgeInsets.all(10),
+                      labelText: "类型",
+                      helperText: "请输入类型"),
+                  autofocus: false,
+                ),
+                RaisedButton(
+                  onPressed: () {
+                    _choice();
+                  },
+                  child: Text("选择"),
+                ),
+                Text(
+                  showText,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                )
+              ],
+            ),
           ),
         ),
       ),

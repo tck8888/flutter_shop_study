@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class CategoryPage extends StatelessWidget {
+class SitePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Center(
-        child: Text("分类"),
+        child: Text("购物车"),
       ),
     );
   }

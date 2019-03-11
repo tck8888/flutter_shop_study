@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_shop/page/category_page.dart';
+import 'package:flutter_shop/page/tool_page.dart';
 import 'package:flutter_shop/page/home_page.dart';
-import 'package:flutter_shop/page/member_page.dart';
-import 'package:flutter_shop/page/shop_cart_page.dart';
+import 'package:flutter_shop/page/message_page.dart';
+import 'package:flutter_shop/page/site_page.dart';
+import 'package:flutter_shop/page/mine_page.dart';
 
 class IndexPage extends StatefulWidget {
   @override
@@ -17,21 +18,26 @@ class _IndexPageState extends State<IndexPage> {
         title: Text("首页")
     ), BottomNavigationBarItem(
         icon: Icon(CupertinoIcons.search),
-        title: Text("分类")
+        title: Text("工具")
     ), BottomNavigationBarItem(
         icon: Icon(CupertinoIcons.shopping_cart),
-        title: Text("购物车")
+        title: Text("中心")
     ), BottomNavigationBarItem(
         icon: Icon(CupertinoIcons.profile_circled),
-        title: Text("会员")
+        title: Text("消息")
+    )
+    , BottomNavigationBarItem(
+        icon: Icon(CupertinoIcons.profile_circled),
+        title: Text("我的")
     )
   ];
 
   final List tabBodies = [
     HomePage(),
-    CategoryPage(),
-    ShopCartPage(),
-    MemberPage(),
+    ToolPage(),
+    SitePage(),
+    MessagePage(),
+    MinPage(),
   ];
 
   var currentIndex = 0;
@@ -50,12 +56,12 @@ class _IndexPageState extends State<IndexPage> {
       bottomNavigationBar: BottomNavigationBar(items: bottomTabs,
         onTap: (index) {
           setState(() {
-          currentIndex = index;
-          currentPage = tabBodies[currentIndex];
+            currentIndex = index;
+            currentPage = tabBodies[currentIndex];
           });
         },
         currentIndex: currentIndex,
-      type: BottomNavigationBarType.fixed,),
+        type: BottomNavigationBarType.fixed, fixedColor:Color(0xff2cc17b),),
       body: currentPage,
     );
   }

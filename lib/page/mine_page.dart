@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class MemberPage extends StatelessWidget {
+class MinPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Center(
-        child: Text("会员中心"),
+        child: Text("我的"),
       ),
     );
   }

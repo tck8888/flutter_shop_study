@@ -15,7 +15,7 @@ class _IndexPageState extends State<IndexPage> {
   final List<BottomNavigationBarItem> bottomTabs = [
     BottomNavigationBarItem(
         icon: Icon(CupertinoIcons.home),
-        title: Text("首页")
+        title: Text("首页",style: TextStyle(color: Color(0xff333740)),)
     ), BottomNavigationBarItem(
         icon: Icon(CupertinoIcons.search),
         title: Text("工具")

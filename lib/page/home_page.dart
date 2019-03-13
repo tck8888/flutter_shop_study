@@ -21,12 +21,10 @@ class _HomePageState extends State<HomePage> {
         body: FutureBuilder(
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-          print(json.decode(snapshot.data))  ;
-             // List<Map> list = json.decode(data);
-
+              HomeBean homeBean = HomeBean.fromJson(snapshot.data);
               return Column(
                 children: <Widget>[
-                 // Banner(banners: banners),
+                  Banner(banners: homeBean.broadcastList),
                 ],
               );
             } else {

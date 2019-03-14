@@ -12,11 +12,11 @@ class HomeBean {
   List<HomeModuleListBean> moduleList;
 
   HomeBean.fromJson(Map<String, dynamic> data) {
-    broadcastList = (data['broadcastList'] as List)
-        .map((i) => HomeBannerBean.fromJson(i))
-        .toList();
     articleList = (data['articleList'] as List)
         .map((i) => ArticleListBean.fromJson(i))
+        .toList();
+    broadcastList = (data['broadcastList'] as List)
+        .map((i) => HomeBannerBean.fromJson(i))
         .toList();
     activityList = (data['activityList'] as List)
         .map((i) => HomeActivityListBean.fromJson(i))

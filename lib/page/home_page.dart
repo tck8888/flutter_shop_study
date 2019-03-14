@@ -3,8 +3,11 @@ import '../service/service_method.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'dart:convert';
 
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:flutter_shop/model/HomeBean.dart';
 import 'package:flutter_shop/model/HomeBannerBean.dart';
+import 'package:flutter_shop/model/home_module_list_bean.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -15,26 +18,29 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("首页"),
-        ),
         body: FutureBuilder(
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              HomeBean homeBean = HomeBean.fromJson(snapshot.data);
-              return Column(
-                children: <Widget>[
-                  Banner(banners: homeBean.broadcastList),
-                ],
-              );
-            } else {
-              return Center(
-                child: Text("加载中"),
-              );
-            }
-          },
-          future: getHomePageContent(),
-        ));
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          HomeBean homeBean = HomeBean.fromJson(snapshot.data);
+          return Column(
+            children: <Widget>[
+              Banner(banners: homeBean.broadcastList),
+              HomeModule(
+                moduleList: homeBean.moduleList,
+              )
+            ],
+          );
+        } else {
+          return Center(
+            child: Text(
+              "加载中",
+              style: TextStyle(color: Color(0xff333740)),
+            ),
+          );
+        }
+      },
+      future: getHomePageContent(),
+    ));
   }
 }
 
@@ -46,7 +52,8 @@ class Banner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 333,
+      height: ScreenUtil().setHeight(320),
+      width: ScreenUtil().setHeight(690),
       child: Swiper(
         itemCount: banners.length,
         pagination: SwiperPagination(),
@@ -57,6 +64,48 @@ class Banner extends StatelessWidget {
             fit: BoxFit.fill,
           );
         },
+      ),
+    );
+  }
+}
+
+class HomeModule extends StatelessWidget {
+  final List<HomeModuleListBean> moduleList;
+
+  HomeModule({Key key, this.moduleList}) : super(key: key);
+
+  Widget _gridViewItem(BuildContext context, HomeModuleListBean item) {
+    return InkWell(
+      onTap: () {
+        print("点击了导航");
+      },
+      child: Column(
+        children: <Widget>[
+          Image.network(
+            item.imgUrl,
+            width: ScreenUtil().setWidth(96),
+            height: ScreenUtil().setHeight(96),
+          ),
+          Text(item.title,
+              style: TextStyle(
+                  color: Color(0xff333740),
+                  fontSize: ScreenUtil().setSp(26)))
+        ],
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: ScreenUtil().setHeight(220),
+      padding: EdgeInsets.only(
+          left: ScreenUtil().setHeight(30), right: ScreenUtil().setHeight(30)),
+      child: GridView.count(
+        crossAxisCount: 4,
+        children: moduleList.map((item) {
+          return _gridViewItem(context, item);
+        }).toList(),
       ),
     );
   }

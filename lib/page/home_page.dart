@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../service/service_method.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'dart:convert';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -14,7 +15,7 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with AutomaticKeepAliveClientMixin{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,6 +43,10 @@ class _HomePageState extends State<HomePage> {
       future: getHomePageContent(),
     ));
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }
 
 class Banner extends StatelessWidget {

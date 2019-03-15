@@ -4,6 +4,7 @@ import 'dart:io';
 import 'dart:convert';
 import 'package:flutter_shop/model/HomeBean.dart';
 
+
 import 'package:flutter_shop/config/service_url.dart';
 
 //获取首页数据
@@ -13,7 +14,7 @@ Future getHomePageContent() async {
     Response response;
     Dio dio = new Dio();
     dio.options.headers = {
-      'accessToken': '7BAAD35C201F4952A4CE64DF2E0A88A4'
+      'accessToken': '1D0AECC2983F4E01AD9995BD97B09374'
     }; //
     dio.options.contentType =
         ContentType.parse("application/x-www-form-urlencoded");

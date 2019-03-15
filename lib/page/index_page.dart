@@ -33,7 +33,7 @@ class _IndexPageState extends State<IndexPage> {
     )
   ];
 
-  final List tabBodies = [
+  final List<Widget> tabBodies = [
     HomePage(),
     ToolPage(),
     SitePage(),
@@ -64,7 +64,10 @@ class _IndexPageState extends State<IndexPage> {
         },
         currentIndex: currentIndex,
         type: BottomNavigationBarType.fixed, fixedColor:Color(0xff2cc17b),),
-      body: currentPage,
+      body: IndexedStack(
+        index: currentIndex,
+        children: tabBodies,
+      ),
     );
   }
 }
